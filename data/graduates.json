@@ -1,0 +1,26 @@
+{
+  "year": 2025,
+  "labName": "DNG",
+  "graduates": [
+    { "slug": "akihisa-shitara", "name": "Akihisa Shitara", "role": "Doctor" },
+    { "slug": "miki-okamura", "name": "Miki Okamura", "role": "Master" },
+    { "slug": "kensuke-katori", "name": "Kensuke Katori", "role": "Master" },
+    { "slug": "yuto-asano", "name": "Yuto Asano", "role": "Master" },
+    { "slug": "zhao-xiaoyu", "name": "Zhao Xiaoyu", "role": "Master" },
+    { "slug": "katsuhito-muroi", "name": "Katsuhito Muroi", "role": "Master" },
+    { "slug": "shon-nakamura", "name": "Shon Nakamura", "role": "Master" },
+    { "slug": "cao-runhui", "name": "Cao Runhui", "role": "Master" },
+    { "slug": "rin-miyamoto", "name": "Rin Miyamoto", "role": "Master" },
+    { "slug": "hyeonkang-kim", "name": "Hyeonkang Kim", "role": "Master" },
+    { "slug": "koki-nagakura", "name": "Koki Nagakura", "role": "Master" },
+    { "slug": "kazushi-nakamura", "name": "Kazushi Nakamura", "role": "Master" },
+    { "slug": "hisato-onodera", "name": "Hisato Onodera", "role": "Master" },
+    { "slug": "hu-yang", "name": "Hu Yang", "role": "Bachelor" },
+    { "slug": "iori-takahashi", "name": "Iori Takahashi", "role": "Bachelor" },
+    { "slug": "joy-hamada", "name": "Joy Hamada", "role": "Bachelor" },
+    { "slug": "kanshi-yoshii", "name": "Kanshi Yoshii", "role": "Bachelor" },
+    { "slug": "koto-ukisu", "name": "Koto Ukisu", "role": "Bachelor" },
+    { "slug": "takumi-tone", "name": "Takumi Tone", "role": "Bachelor" },
+    { "slug": "yuki-horiuchi", "name": "Yuki Horiuchi", "role": "Bachelor" }
+  ]
+}
