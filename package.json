@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.99.3",
     "geist": "^1.7.0",
     "html2canvas-pro": "^2.0.2",
     "jspdf": "^4.2.1",

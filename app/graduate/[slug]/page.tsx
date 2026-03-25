@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getGraduate, getGraduateData, getMessages } from "@/lib/data";
+import { getGraduate, getGraduateData } from "@/lib/data";
 import GraduateView from "@/components/GraduateView";
 
 interface Props {
@@ -14,17 +14,9 @@ export default async function GraduatePage({ params }: Props) {
     notFound();
   }
 
-  const messages = getMessages(slug);
   const { year, labName } = getGraduateData();
 
-  return (
-    <GraduateView
-      graduate={graduate}
-      initialMessages={messages}
-      year={year}
-      labName={labName}
-    />
-  );
+  return <GraduateView graduate={graduate} year={year} labName={labName} />;
 }
 
 export async function generateStaticParams() {

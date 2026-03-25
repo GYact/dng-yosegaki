@@ -1,10 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getMessages, addMessage, deleteMessage } from "@/lib/data";
+import { supabase } from "@/lib/supabase";
 
 export async function GET(request: NextRequest) {
   const slug = request.nextUrl.searchParams.get("slug");
-  const messages = getMessages(slug ?? undefined);
-  return NextResponse.json(messages);
+
+  let query = supabase
+    .from("messages")
+    .select("*")
+    .order("created_at", { ascending: true });
+
+  if (slug) {
+    query = query.eq("to_slug", slug);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json(data);
 }
 
 export async function POST(request: NextRequest) {
@@ -18,19 +33,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const message = addMessage({
-      to: body.to,
-      from: body.from,
-      body: body.body,
-    });
+    const { data: message, error } = await supabase
+      .from("messages")
+      .insert({
+        to_slug: body.to,
+        from_name: body.from,
+        body: body.body,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
 
     return NextResponse.json(message, { status: 201 });
   } catch {
     return NextResponse.json(
-      {
-        error:
-          "メッセージの保存に失敗しました。開発環境でのみ書き込みが可能です。",
-      },
+      { error: "メッセージの保存に失敗しました" },
       { status: 500 },
     );
   }
@@ -43,19 +63,14 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "id は必須です" }, { status: 400 });
     }
 
-    const deleted = deleteMessage(id);
-    if (!deleted) {
-      return NextResponse.json(
-        { error: "メッセージが見つかりません" },
-        { status: 404 },
-      );
+    const { error } = await supabase.from("messages").delete().eq("id", id);
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
   } catch {
-    return NextResponse.json(
-      { error: "削除に失敗しました。開発環境でのみ削除が可能です。" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "削除に失敗しました" }, { status: 500 });
   }
 }

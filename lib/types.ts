@@ -12,12 +12,16 @@ export interface GraduateData {
 
 export interface Message {
   id: string;
-  to: string;
-  from: string;
+  to_slug: string;
+  from_name: string;
   body: string;
-  createdAt: string;
+  created_at: string;
 }
 
-export interface MessageData {
-  messages: Message[];
+export interface Photo {
+  id: string;
+  graduate_slug: string;
+  file_path: string;
+  uploaded_by: string;
+  created_at: string;
 }
